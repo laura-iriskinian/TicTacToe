@@ -1,11 +1,10 @@
-board = []
-for row in range (3):
-    board.append([])
-    for column in range (3):
-        board [row].append('-')
+def board():
+    board = [[1,2,3],
+             [4,5,6],
+             [7,8,9]]
+    for i in board:
+        for j in i:
+            print(j, end="   ")
+        print()
 
-def print_board(board):
-    for row in board:
-        print (" ".join(row))
-
-print_board(board)
+board()
