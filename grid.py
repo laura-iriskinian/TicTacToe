@@ -1,4 +1,4 @@
-def board():
+def afficher_grille(board):
     board = [[1,2,3],
              [4,5,6],
              [7,8,9]]
@@ -7,4 +7,4 @@ def board():
             print(j, end="   ")
         print()
 
-board()
+afficher_grille()
