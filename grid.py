@@ -31,8 +31,8 @@ def user_move(board,player):
         board[1][2] = player
     elif move == "7":
         board[2][0] = player
-    elif move == "2":
-        board[2][8] = player
+    elif move == "8":
+        board[2][1] = player
     elif move == "9":
         board[2][2] = player
     else: 
@@ -44,10 +44,12 @@ print_board(board)
 
 ## exemple pour pouvoir jouer --> boucle à créer
 
-player = "X"
-user_move(board,player)
-print_board(board)
+while True:
+    loop = user_move
+    player = "X"
+    user_move(board,player)
+    print_board(board)
 
-player = "O"
-user_move(board,player)
-print_board(board)
+    player = "O"
+    user_move(board,player)
+    print_board(board)
