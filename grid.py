@@ -44,12 +44,16 @@ print_board(board)
 
 ## exemple pour pouvoir jouer --> boucle à créer
 
+player = "X"
 while True:
     loop = user_move
-    player = "X"
-    user_move(board,player)
-    print_board(board)
-
-    player = "O"
-    user_move(board,player)
-    print_board(board)
+    if player == "X":
+        print("Joueur X:")
+        user_move(board,player)
+        print_board(board)
+        player = "O"
+    else :
+        print("Joueur O:")
+        user_move(board,player)
+        print_board(board)
+        player = "X"
