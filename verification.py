@@ -1,25 +1,25 @@
-joueur = "X"
-joueur = "O"
+player = "X"
+player = "O"
 def check_win (board, joueur):
     #String validation
     for i in range(3):
         if board[i][0] == board[i][1] == board[i][2] != "-":
-            print(f"Joueur {joueur}, vous avez gagné!")
+            print(f"Joueur {player}, vous avez gagné!")
             return True
 
     #Column validation
     for i in range(3):
         if board[0][i] == board[1][i] == board[2][i] != "-":
-            print(f"Joueur {joueur}, vous avez gagné!")
+            print(f"Joueur {player}, vous avez gagné!")
             return True
         
     #Diagonales verification
     if board[0][0] == board[1][1] == board[2][2] != "-":
-        print(f"Joueur {joueur}, vous avez gagné!")
+        print(f"Joueur {player}, vous avez gagné!")
         return True
         
     if board[0][2] == board[1][1] == board[2][0] != "-":
-        print(f"Joueur {joueur}, vous avez gagné!")
+        print(f"Joueur {player}, vous avez gagné!")
         return True
     
     return None
