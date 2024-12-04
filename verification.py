@@ -1,6 +1,6 @@
 player = "X"
 player = "O"
-def check_win (board, joueur):
+def check_win (board, player):
     #String validation
     for i in range(3):
         if board[i][0] == board[i][1] == board[i][2] != "-":

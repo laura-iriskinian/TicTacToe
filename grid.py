@@ -61,27 +61,36 @@ def user_move(board,player,boelan):
 board = create_board()
 print_board(board)
 
+def verif(board):
+    if board[0][0] == "X":
+        print ("Gagner")
+        winner = True
+        return winner
+    else:
+        winner = False
+        return winner
+    
 
 # exemple pour pouvoir jouer --> boucle à créer
-
+winner = False
 player = "X"
 boelan=any
-while True:
-    if player == "X":
-        print("Joueur X:")
-        boelan = user_move(board, player, boelan)  # Rappeler le fonction correctement
-        print_board(board)
-        if boelan == True:
-            player = "O"
+while winner == False:
+    winner = verif(board)
+    if winner == False:
+        if player == "X":
+            print("Joueur X:")
+            boelan = user_move(board, player, boelan)  # Rappeler la fonction correctement
+            print_board(board)
+            if boelan == True:
+                player = "O"
+            else:
+                print(f"Player {player}, veuillez rejouer.") # Pas besoin de rappeler la fonction print_board dans else
         else:
-            print(f"Player {player}, veuillez rejouer.") # Pas besoin de rappeler la fonction print_board dans else
-    else:
-        print("Joueur O:")
-        boelan = user_move(board, player, boelan)  # Rappeler la fonction correctement 
-        print_board(board)
-        if boelan == True:
-            player = "X"
-        else:
-            print(f"Player {player}, veuillez rejouer.") # Pas besoin de rappeler la fonction print_board dans else
-
-        
+            print("Joueur O:")
+            boelan = user_move(board, player, boelan)  # Rappeler la fonction correctement 
+            print_board(board)
+            if boelan == True:
+                player = "X"
+            else:
+                print(f"Player {player}, veuillez rejouer.") # Pas besoin de rappeler la fonction print_board dans else
