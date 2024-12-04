@@ -98,8 +98,8 @@ def verif(board, player):
     board[1][0] != "4" and board[1][1] != "5" and board[1][2] != "6" and \
     board[2][0] != "7" and board[2][1] != "8" and board[2][2] != "9" :
         print (f"match nul !")
-        winner = "Nul"
-        return "Nul"
+        winner = True
+        return winner
     else:
         winner = False
         return winner
@@ -129,19 +129,8 @@ while winner == False:
 
     if winner == True:
         print("Voulez vous rejouer ?")
-        reset = input("Rentrez yes ou no : ")
-        if reset == "yes":
-            board = create_board()
-            print_board(board)
-            winner = False
-            player = "X"  
-        else:
-            print("A bientôt !!") 
-            winner = True 
-    elif winner == "Nul":
-        print("Voulez vous rejouer ?")
-        reset = input("Rentrez yes ou no : ")
-        if reset == "yes":
+        reset = input("Rentrez oui ou non : ")
+        if reset == "oui":
             board = create_board()
             print_board(board)
             winner = False
