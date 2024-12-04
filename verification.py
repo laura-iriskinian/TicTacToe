@@ -1,6 +1,4 @@
-player = "X"
-player = "O"
-def check_win (board, joueur):
+def check_win (board, player):
     #String validation
     for i in range(3):
         if board[i][0] == board[i][1] == board[i][2] != "-":
@@ -31,3 +29,16 @@ def check_draw(board):
             return False
     print("C'est un tirage au sort. Essayez à nouveau")
     return True
+
+
+
+
+# Vérifier si le joueur actuel a gagné
+    if check_win(board, player):
+            print(f"Félicitations, joueur {player}! Vous avez gagné!")
+            #break
+
+        # Vérifier si la partie est nulle
+    if check_draw(board):
+            print("C'est un match nul!")
+            #break
