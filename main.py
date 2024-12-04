@@ -14,95 +14,72 @@ def print_board(board):
     print(f" {board[2][0]} | {board[2][1]} | {board[2][2]}")
 
 
-def user_move(board,player):
+def user_move(board,player,boelan):
     move = input("Entrez votre mouvement (1-9): ")
-
-    if move == "1":
+    if move == "1" and board[0][0] == "1":
         board[0][0] = player
-    elif move == "2":
+        boelan = True
+        return boelan
+    elif move == "2" and board[0][1] == "2":
         board[0][1] = player
-    elif move == "3":
+        boelan = True
+        return boelan
+    elif move == "3" and board[0][2] == "3":
         board[0][2] = player
-    elif move == "4":
+        boelan = True
+        return boelan
+    elif move == "4" and board[1][0] == "4":
         board[1][0] = player
-    elif move == "5":
+        boelan = True
+        return boelan
+    elif move == "5" and board[1][1] == "5":
         board[1][1] = player
-    elif move == "6":
+        boelan = True
+        return boelan
+    elif move == "6" and board[1][2] == "6":
         board[1][2] = player
-    elif move == "7":
+        boelan = True
+        return boelan
+    elif move == "7" and board[2][0] == "7":
         board[2][0] = player
-    elif move == "8":
+        boelan = True
+        return boelan
+    elif move == "8" and board[2][1] == "8":
         board[2][1] = player
-    elif move == "9":
+        boelan = True
+        return boelan
+    elif move == "9" and board[2][2] == "9":
         board[2][2] = player
+        boelan = True
+        return boelan
     else: 
         print(f"Mouvement {move} invalide")
+        boelan = False
+        return boelan
 
 
-
-def check_win (board, player):
-    #String validation
-    for i in range(3):
-        if board[i][0] == board[i][1] == board[i][2] != "-":
-            print(f"Joueur {player}, vous avez gagné!")
-            return True
-
-    #Column validation
-    for i in range(3):
-        if board[0][i] == board[1][i] == board[2][i] != "-":
-            print(f"Joueur {player}, vous avez gagné!")
-            return True
-        
-    #Diagonales verification
-   # if board[0][0] == board[1][1] == board[2][2] != "-":
-    #    print(f"Joueur {player}, vous avez gagné!")
-     #   return True
-        
-    if board[0][2] == board[1][1] == board[2][0] != "-":
-        print(f"Joueur {player}, vous avez gagné!")
-        return True
-    
-    return None
-
-# Check if it is a draw
-def check_draw(board):
-    for row in board:
-        if any(cell not in ["X", "O"] for cell in row):  # If the box is not occupied
-            return False
-    print("C'est un tirage au sort. Essayez à nouveau")
-    return True
+board = create_board()
+print_board(board)
 
 
-# Fonction principale pour orchestrer le jeu
-def play_game():
-    # Création du plateau
-    board = create_board()
-    print_board(board)
+# exemple pour pouvoir jouer --> boucle à créer
 
-    # Initialisation du joueur actif
-    player = "X"
-
-    while True:
-        print(f"C'est au tour du joueur {player}.")
-        user_move(board, player)  # Demander le mouvement
-        print_board(board)  # Afficher le plateau mis à jour
-
-        # Vérifier si le joueur actuel a gagné
-        if check_win(board, player):
-            print(f"Félicitations, joueur {player}! Vous avez gagné!")
-            break
-
-        # Vérifier si la partie est nulle
-        if check_draw(board):
-            print("C'est un match nul!")
-            break
-
-        # Changer de joueur
-        player = "O" if player == "X" else "X"
-
-# Appel de la fonction principale pour démarrer le jeu
-play_game()
-
-
-
-
+player = "X"
+boelan=any
+while True:
+    if player == "X":
+        print("Joueur X:")
+        boelan = user_move(board, player, boelan)  # Rappeler le fonction correctement
+        print_board(board)
+        if boelan == True:
+            player = "O"
+        else:
+            print(f"Player {player}, veuillez rejouer.") # Pas besoin de rappeler la fonction print_board dans else
+    else:
+        print("Joueur O:")
+        boelan = user_move(board, player, boelan)  # Rappeler la fonction correctement 
+        print_board(board)
+        if boelan == True:
+            player = "X"
+        else:
+            print(f"Player {player}, veuillez rejouer.") # Pas besoin de rappeler la fonction print_board dans else
