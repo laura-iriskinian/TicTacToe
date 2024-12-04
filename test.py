@@ -69,29 +69,37 @@ def verif(board, player):
     elif board[1][0] == player and board [1][1] == player and board[1][2]== player: #ligne 2
         print (f"Player {player} Gagne")
         winner = True
+        return winner
     elif board[2][0] == player and board [2][1] == player and board[2][2]== player: #ligne 3
         print (f"Player {player} Gagne")
         winner = True
+        return winner
     elif board[0][0] == player and board [1][0] == player and board[2][0]== player: #colonne 1
         print (f"Player {player} Gagne")
         winner = True
+        return winner
     elif board[0][1] == player and board [1][1] == player and board[2][1]== player: #colonne 2
         print (f"Player {player} Gagne")
         winner = True
+        return winner
     elif board[0][2] == player and board [1][2] == player and board[2][2]== player: #colonne 3
         print (f"Player {player} Gagne")
         winner = True
+        return winner
     elif board[0][0] == player and board [1][1] == player and board[2][2]== player: #diagonale de gauche à droite
         print (f"Player {player} Gagne")
         winner = True
+        return winner
     elif board[0][2] == player and board [1][1] == player and board[2][0]== player: #diagonale de droite à gauche
         print (f"Player {player} Gagne")
         winner = True
+        return winner
     elif board[0][0] != "1" and board[0][1] != "2" and board[0][2] != "3" and \
     board[1][0] != "4" and board[1][1] != "5" and board[1][2] != "6" and \
     board[2][0] != "7" and board[2][1] != "8" and board[2][2] != "9" :
         print (f"match nul !")
         winner = "Nul"
+        return "Nul"
     else:
         winner = False
         return winner
@@ -122,7 +130,7 @@ while winner == False:
     if winner == True:
         print("Voulez vous rejouer ?")
         reset = input("Rentrez yes ou no : ")
-        if reset == "Yes":
+        if reset == "yes":
             board = create_board()
             print_board(board)
             winner = False
@@ -130,4 +138,15 @@ while winner == False:
         else:
             print("A bientôt !!") 
             winner = True 
+    elif winner == "Nul":
+        print("Voulez vous rejouer ?")
+        reset = input("Rentrez yes ou no : ")
+        if reset == "yes":
+            board = create_board()
+            print_board(board)
+            winner = False
+            player = "X"  
+        else:
+            print("A bientôt !!") 
+            winner = True
         
