@@ -61,6 +61,8 @@ def user_move(board,player,boelan):
 board = create_board()
 print_board(board)
 
+#Verification de win/match nul
+
 def verif(board, player):
     if board[0][0]== player and board [0][1]==player and board[0][2]== player or \
         board[1][0] == player and board [1][1] == player and board[1][2]== player or \
