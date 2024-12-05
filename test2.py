@@ -15,7 +15,9 @@ def print_board(board):
 
 
 def user_move(board,player,boelan):
+
     move = input("Entrez votre mouvement (1-9): ")
+
     if move == "1" and board[0][0] == "1":
         board[0][0] = player
         boelan = True
@@ -102,15 +104,50 @@ def verif(board, player):
         return winner
 
 
-# exemple pour pouvoir jouer --> boucle à créer
 
-def ia(board,player):
-    
-    if board[0][0] != "1":
-        
-        board[0][1] = player
-        boelan = True
-        return boelan
+def ia(board,player,boelan):
+
+    i = 0
+    j = 0
+    boelan = False
+    while boelan == False:
+        if board[0][0] != "1" and board[0][0] != player :
+            while boelan == False:
+                board[i][j] = player
+                boelan = True
+                i+=1
+        elif board[0][1] != "2" and board[0][1] != player :
+            
+            board[i][j+1] = player
+            boelan = True
+            
+        elif board[0][2] != "3" and board[0][2] != player :
+            
+            board[i][j] = player
+            boelan = True
+        elif board[1][0] != "4" and board[1][0] != player :
+            
+            board[i][j] = player
+            boelan = True
+        elif board[1][1] != "5" and board[1][1] != player :
+            board[i][j] = player
+            boelan = True
+        elif board[1][2] != "6" and board[1][2] != player :
+            board[i][j] = player
+            boelan = True
+        elif board[2][0] != "7" and board[2][0] != player :
+            board[i][j] = player
+            boelan = True
+        elif board[2][1] != "8" and board[2][1] != player :
+            board[i][j] = player
+            boelan = True
+        elif board[2][2] != "9" and board[2][2] != player :
+            board[i][j] = player
+            boelan = True
+        else:
+            boelan = False
+    j+=1
+    i+=1
 
 
 board = create_board()
@@ -124,7 +161,8 @@ while winner == False:
 
     print (f"joueur: {player}") 
 
-    boelan = user_move(board, player, boelan)
+    if player == "X":
+        boelan = user_move(board, player, boelan)
 
     print_board (board)
 
@@ -132,6 +170,7 @@ while winner == False:
 
     if player == "X" and boelan == True:
         player = "O"
+        ia(board,player,boelan)
     elif player == "O" and boelan == True:
         player = "X"
 

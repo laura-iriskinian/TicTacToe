@@ -15,7 +15,9 @@ def print_board(board):
 
 
 def user_move(board,player,boelan):
+
     move = input("Entrez votre mouvement (1-9): ")
+
     if move == "1" and board[0][0] == "1":
         board[0][0] = player
         boelan = True
@@ -102,15 +104,16 @@ def verif(board, player):
         return winner
 
 
-# exemple pour pouvoir jouer --> boucle à créer
 
-def ia(board,player):
+def ia(board,bolean):
+    bolean =False
+    for i in range(3):
+        for j in range(3):
+            if board[i][j] == " ":
+                board[i][j] = "O"
+                bolean = True
+                return
     
-    if board[0][0] != "1":
-        
-        board[0][1] = player
-        boelan = True
-        return boelan
 
 
 board = create_board()
@@ -124,7 +127,8 @@ while winner == False:
 
     print (f"joueur: {player}") 
 
-    boelan = user_move(board, player, boelan)
+    if player == "X":
+        boelan = user_move(board, player, boelan)
 
     print_board (board)
 
@@ -132,6 +136,7 @@ while winner == False:
 
     if player == "X" and boelan == True:
         player = "O"
+        ia(board,boelan)
     elif player == "O" and boelan == True:
         player = "X"
 
