@@ -1,3 +1,5 @@
+import random
+
 def create_board():
     board = [
         ["1","2","3"],
@@ -13,8 +15,7 @@ def print_board(board):
     print("---|---|---")
     print(f" {board[2][0]} | {board[2][1]} | {board[2][2]}")
 
-
-def user_move(board,player,boelan):
+def user_move(board,player,boelan,move):
     move = input("Entrez votre mouvement (1-9): ")
     if move == "1" and board[0][0] == "1":
         board[0][0] = player
@@ -103,9 +104,10 @@ def verif(board, player):
 winner = False
 player = "X"
 boelan=any
+move=any
 while winner == False:
     print (f"joueur: {player}")
-    boelan = user_move(board, player, boelan)
+    boelan = user_move(board, player, boelan,move)
 
     print_board (board)
 
@@ -117,3 +119,14 @@ while winner == False:
         player = "X"
     elif winner == "nul":
         winner="end"
+    
+    for player in user_move(board, player, boelan, move):
+        if player == "O" and board == int:
+            move = random.randint(1,9)
+            boelan = True
+        else :
+            boelan = False
+
+
+
+
