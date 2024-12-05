@@ -1,8 +1,8 @@
 def create_board():
     board = [
-        ["1","2","3"],
-        ["4","5","6"],
-        ["7","8","9"],
+        ["1", "2", "3"],
+        ["4", "5", "6"],
+        ["7", "8", "9"],
     ]
     return board
 
@@ -13,55 +13,118 @@ def print_board(board):
     print("---|---|---")
     print(f" {board[2][0]} | {board[2][1]} | {board[2][2]}")
 
-
-def user_move(board,player,boelan):
+def user_move(board, player):
     move = input("Entrez votre mouvement (1-9): ")
+    valid_move = False
     if move == "1" and board[0][0] == "1":
         board[0][0] = player
-        boelan = True
-        return boelan
+        valid_move = True
     elif move == "2" and board[0][1] == "2":
         board[0][1] = player
-        boelan = True
-        return boelan
+        valid_move = True
     elif move == "3" and board[0][2] == "3":
         board[0][2] = player
-        boelan = True
-        return boelan
+        valid_move = True
     elif move == "4" and board[1][0] == "4":
         board[1][0] = player
-        boelan = True
-        return boelan
+        valid_move = True
     elif move == "5" and board[1][1] == "5":
         board[1][1] = player
-        boelan = True
-        return boelan
+        valid_move = True
     elif move == "6" and board[1][2] == "6":
         board[1][2] = player
-        boelan = True
-        return boelan
+        valid_move = True
     elif move == "7" and board[2][0] == "7":
         board[2][0] = player
-        boelan = True
-        return boelan
+        valid_move = True
     elif move == "8" and board[2][1] == "8":
         board[2][1] = player
-        boelan = True
-        return boelan
+        valid_move = True
     elif move == "9" and board[2][2] == "9":
         board[2][2] = player
-        boelan = True
-        return boelan
-    else: 
+        valid_move = True
+    else:
         print(f"Mouvement {move} invalide")
-        boelan = False
-        return boelan
+    
+    return valid_move
 
+def IA(board, player):
+    for i in range(3):
+        for j in range(3):
+            if board[0][0] != "1" and board[0][1] != "2":
+                board [0][3] = player
+                return True
+            elif board [0][1] != "2" and board [0][2] != "3":
+                board [0][0] = player
+                return True
+            elif board [1][0] != "4" and board [1][1] != "5":
+                board [1][2] = player
+                return True
+            elif board [1][2] != "4" and board [1][1] != "5":
+                board [1][0] = player
+                return True
+            elif board [2][0] != "7" and board [2][1] != "8":
+                board [2][2] = player
+                return True
+            elif board [2][1] != "8" and board [2][2] != "9":
+                board [2][0] = player
+                return True
+            elif board [0][0] != "1" and board [1][0] != "4":
+                board [2][0] = player
+                return True
+            elif board [1][0] != "4" and board [2][0] != "7":
+                board [0][0] = player
+                return True
+            elif board [0][1] != "2" and board [1][1] != "5":
+                board [2][1] = player
+                return True
+            elif board [1][1] != "5" and board [2][1] != "8":
+                board [0][1] = player
+                return True
+            elif board [0][2] != "3" and board [1][2] != "6":
+                board [2][2] = player
+                return True
+            elif board [1][2] != "6" and board [2][2] != "9":
+                board [0][2] = player
+                return True
+            elif board [1][1] != "5" and board [2][2] != "9":
+                board [0][0] = player
+                return True
+            elif board [0][0] != "1" and board [1][1] != "5":
+                board [2][2] = player
+                return True
+            elif board [1][1] != "5" and board [2][0] != "7":
+                board [0][2] = player
+                return True
+            elif board [1][1] != "5" and board [0][2] != "3":
+                board [2][0] = player
+                return True
+            elif board [1][0] != "4" and board [2][0] != "7":
+                board [0][0] = player
+                return True
+            elif board [2][0] != "7" and board [0][2] != "3":
+                board [1][1] = player
+                return True
+            elif board [0][0] != "1" and board [2][2] != "9":
+                board [1][1] = player
+                return True
+            elif board [0][0] != "1" and board [2][0] != "7":
+                board [1][0] = player
+                return True
+            elif board [0][0] != "1" and board [0][2] != "3":
+                board [0][1] = player
+                return True
+            elif board [2][0] != "7" and board [2][2] != "9":
+                board [2][1] = player
+                return True
+            elif board [0][2] != "3" and board [2][2] != "9":
+                board [1][2] = player
+                return True
+    return False
 
 board = create_board()
 print_board(board)
-
-#Verification de win/match nul
+    
 
 def verif(board, player):
     if board[0][0]== player and board [0][1]==player and board[0][2]== player or \
@@ -89,34 +152,28 @@ def verif(board, player):
 # exemple pour pouvoir jouer --> boucle à créer
 winner = False
 player = "X"
-boelan=any
 
+while not winner:
+    print(f"Joueur: {player}")
+    if player == "X":
+        valid_move = user_move(board, player) #si le joueur est X, la fonction user_move s'applque
+    else:
+        valid_move = IA(board, player) #sinon c'est la fonction auto_move qui s'applique
+    
+    if valid_move:
+        print_board(board)
+        winner = verif(board, player)
+        player = "O" if player == "X" else "X"
 
-
-while winner == False:
-
-    print (f"joueur: {player}") 
-
-    boelan = user_move(board, player, boelan)
-
-    print_board (board)
-
-    winner=verif(board, player)
-
-    if player == "X" and boelan == True:
-        player = "O"
-    elif player == "O" and boelan == True:
-        player = "X"
-
-    if winner == True:
-        print("Voulez vous rejouer ?")
-        reset = input("Rentrez oui ou non : ")
-        if reset == "oui":
+    if winner:
+        replay = input("Voulez-vous rejouer ? (oui/non): ")
+        if replay.lower() == "oui":
             board = create_board()
             print_board(board)
             winner = False
-            player = "X"  
+            player = "X"
         else:
             print("A bientôt !!") 
-            winner = True
+            winner = True 
+        
         
