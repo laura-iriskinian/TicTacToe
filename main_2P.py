@@ -58,9 +58,6 @@ def user_move(board,player,boelan):
         return boelan
 
 
-board = create_board()
-print_board(board)
-
 def verif(board, player):
     if board[0][0]== player and board [0][1]==player and board[0][2]== player or \
         board[1][0] == player and board [1][1] == player and board[1][2]== player or \
@@ -84,12 +81,13 @@ def verif(board, player):
     return winner
 
 
-# exemple pour pouvoir jouer --> boucle à créer
+# variable pour que la boucle commence
 winner = False
 player = "X"
 boelan=any
 
-
+board = create_board()
+print_board(board)
 
 while winner == False:
 

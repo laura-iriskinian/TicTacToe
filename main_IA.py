@@ -51,7 +51,7 @@ def user_move(board, player):
     return boelan
 
 def IA(board, player):
-    
+
     for i in range(3):
         for j in range(3):
             if board[i][j] in "123456789":
@@ -111,7 +111,7 @@ while not winner:
         print("Voulez vous rejouer ?")
         reset = input("Rentrez oui ou non : ")
         if reset == "oui":
-            board = create_board()
+            board = create_board()          # remet les conditions initiale
             print_board(board)
             winner = False
             player = "X"  
